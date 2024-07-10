@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Shop Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: pink;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        header .logo {
+            font-size: 24px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        header .search-bar input {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .banner img {
+            width: 100%;
+            height: auto;
+        }
+
+        .featured-products {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .featured-products .product {
+            display: inline-block;
+            margin: 15px;
+        }
+
+        .featured-products .product img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        .reviews {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .product-detail {
+            display: flex;
+            padding: 20px;
+        }
+
+        .product-detail img {
+            width: 300px;
+            height: 300px;
+            margin-right: 20px;
+        }
+
+        .product-detail .product-info {
+            max-width: 500px;
+        }
+
+        .product-detail .product-info h1 {
+            margin-top: 0;
+        }
+
+        .product-detail .product-info button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Shop Online</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Deals</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products...">
+        </div>
+    </header>
+
+    <main>
+        <!-- Homepage Content -->
+        <div class="banner">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.1fa3oDfsBVgKwSd6be1frwHaDt&pid=Api&P=0&h=180" alt="Promotional Banner">
+        </div>
+        <section class="featured-products">
+            <h2>Featured Products</h2>
+            <div class="product">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.J-jPXQhQ-Gg4VhRGWvDmUgHaHa&pid=Api&P=0&h=180" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>$19.99</p>
+            </div>
+            <div class="product">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.FoK0ruzOYbovgPh6hmprWQHaHa&pid=Api&P=0&h=180" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>$29.99</p>
+            </div>
+            <!-- Add more products as needed -->
+        </section>
+        <section class="reviews">
+            <h2>Customer Reviews</h2>
+            <p>"Great products and fast shipping!" - Jane Doe</p>
+            <p>"Excellent customer service." - John Smith</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Online Shop. All rights reserved.</p>
+    </footer>
+
+    <!-- Product Page Content -->
+    <main>
+        <div class="product-detail">
+            <img src="https://static.skyassets.com/contentstack/assets/blt143e20b03d72047e/blt965a1e720ad3cd66/63d245c69d7bcb542235031c/Mobile_Samsung_Diamond_PDP_S23_Black_Front&Back.png?imageManager=true&impolicy=resize&width=1000" alt="Product Image">
+            <div class="product-info">
+                <h1>Product Name</h1>
+                <p>$19.99</p>
+                <p>Product description includes details about the product, its features, and specifications.</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
