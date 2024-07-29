@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #todo-container {
+            background: blue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        h1 {
+            margin: 0 0 20px 0;
+        }
+        input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+        .edit, .remove {
+            background: #3498db;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .remove {
+            background: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div id="todo-container">
+        <h1>To-Do List</h1>
+        <input type="text" id="todo-input" placeholder="Add a new task...">
+        <ul id="todo-list"></ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadTasks);
+        document.getElementById('todo-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const taskText = this.value.trim();
+                if (taskText !== '') {
+                    addTask(taskText);
+                    this.value = '';
+                }
+            }
+        });
+
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.forEach(task => addTask(task.text, task.completed));
+        }
+
+        function saveTasks() {
+            const tasks = [];
+            document.querySelectorAll('#todo-list li').forEach(li => {
+                tasks.push({
+                    text: li.querySelector('.task-text').textContent,
+                    completed: li.classList.contains('completed')
+                });
+            });
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function addTask(taskText, completed = false) {
+            const ul = document.getElementById('todo-list');
+            const li = document.createElement('li');
+            if (completed) {
+                li.classList.add('completed');
+            }
+
+            const taskSpan = document.createElement('span');
+            taskSpan.className = 'task-text';
+            taskSpan.textContent = taskText;
+            taskSpan.addEventListener('click', () => {
+                li.classList.toggle('completed');
+                saveTasks();
+            });
+
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'actions';
+
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.className = 'edit';
+            editButton.addEventListener('click', () => {
+                const newTaskText = prompt('Edit task:', taskSpan.textContent);
+                if (newTaskText !== null) {
+                    taskSpan.textContent = newTaskText;
+                    saveTasks();
+                }
+            });
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.className = 'remove';
+            removeButton.addEventListener('click', () => {
+                ul.removeChild(li);
+                saveTasks();
+            });
+
+            actionsDiv.appendChild(editButton);
+            actionsDiv.appendChild(removeButton);
+
+            li.appendChild(taskSpan);
+            li.appendChild(actionsDiv);
+            ul.appendChild(li);
+
+            saveTasks();
+        }
+    </script>
+</body>
+</html>
